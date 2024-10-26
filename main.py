@@ -1,4 +1,5 @@
-import pygame, constants, player
+import pygame, constants
+import player, asteroid, asteroidfield
 
 
 def main():
@@ -14,8 +15,13 @@ def main():
     running = True
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
     player.Player.containers = (updatable, drawable)
+    asteroid.Asteroid.containers = (asteroids, updatable, drawable)
+    asteroidfield.AsteroidField.containers = (updatable,)
     gamer = player.Player(x=constants.SCREEN_WIDTH /2, y=constants.SCREEN_WIDTH/2)
+    a_field = asteroidfield.AsteroidField()
 
     while running:
         # poll for events
