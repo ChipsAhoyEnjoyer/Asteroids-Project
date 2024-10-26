@@ -20,19 +20,20 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        
+        dt = clock.tick(60) / 1000  # limits FPS to 60
 
         # fill the screen with a color to wipe away anything from last frame
         screen.fill(constants.BG_COLOR)
 
         # RENDER YOUR GAME HERE
+        gamer.update(dt)
         gamer.draw(screen=screen)
 
         # flip() the display to put your work on screen
         pygame.display.flip()
 
-        dt = clock.tick(60) // 1000  # limits FPS to 60
-
-pygame.quit()
+    pygame.quit()
 
 
 if __name__ == "__main__":
