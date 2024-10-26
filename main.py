@@ -12,6 +12,9 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
     running = True
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    player.Player.containers = (updatable, drawable)
     gamer = player.Player(x=constants.SCREEN_WIDTH /2, y=constants.SCREEN_WIDTH/2)
 
     while running:
@@ -27,8 +30,10 @@ def main():
         screen.fill(constants.BG_COLOR)
 
         # RENDER YOUR GAME HERE
-        gamer.update(dt)
-        gamer.draw(screen=screen)
+        for obj in updatable:
+            obj.update(dt)
+        for obj in drawable:
+            obj.draw(screen)
 
         # flip() the display to put your work on screen
         pygame.display.flip()
