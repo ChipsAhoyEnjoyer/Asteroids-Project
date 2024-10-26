@@ -41,10 +41,14 @@ def main():
         # RENDER YOUR GAME HERE
         for obj in updatable:
             obj.update(dt)
-        for obj in asteroids:
-            if gamer.collision(obj):
+        for rock in asteroids:
+            if gamer.collision(rock):
                 print("Game over!")
                 running = False
+            for bullet in shots:
+                if rock.collision(bullet):
+                    rock.split()
+                    shot.Shot.kill(bullet)
         for obj in drawable:
             obj.draw(screen)
 
